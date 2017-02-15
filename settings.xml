@@ -7,8 +7,8 @@
 			</activation>
 			<properties>
 			 	<gpg.homedir>${env.GNUPGHOME}</gpg.homedir>
-				<gpg.keyname>${env.gpg.keyname}</gpg.keyname>
-				<gpg.passphrase>${env.gpg.passphrase}</gpg.passphrase>
+				<gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+				<gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
 			</properties>
 		</profile>
 	</profiles>
