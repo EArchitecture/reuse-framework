@@ -11,9 +11,9 @@ import org.apache.commons.logging.LogFactory;
  * 
  * @author <a href="mailto:barcelos.cbc@gmail.com">Cleber Barcelos</a>
  * 
- * @param <T>
+ * @param <E>
  *          Entidade mapeada JPA
- * @param <D>
+ * @param <I>
  *          Tipo do objeto da PK ( Primary Key )
  * @version 0.1.0
  */
