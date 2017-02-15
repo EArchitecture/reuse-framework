@@ -21,6 +21,31 @@
 			<groupId>com.github.earchitecture.reuse</groupId>
 			<artifactId>reuse-service</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.github.earchitecture.reuse</groupId>
+			<artifactId>reuse-service</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.earchitecture.reuse</groupId>
+			<artifactId>reuse-model</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
 	</dependencies>
 
 
