@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:cache="http://www.thymeleaf.org/extras/cache"
+	xmlns:with="http://www.thymeleaf.org/extras/with"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+	
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11,IE=edge,IE=9,chrome=1"/>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE"/>	
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta charset="utf-8"/> 
+     <!-- Plugin jquery -->
+	<script type="text/javascript" charset="utf8" th:src="@{/static/jquery-3.1.1/js/jquery.min.js}"></script>
+	
+    <!-- Plugin jquery-ui -->
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/jquery-ui-1.12.1/css/jquery-ui.min.css}"></link>
+	<script type="text/javascript" charset="utf8" th:src="@{/static/jquery-ui-1.12.1/js/jquery-ui.min.js}"></script>  
+	
+	<!-- Plugin bootstrap -->
+	<link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/bootstrap-3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/bootstrap-3.3.7/css/bootstrap-theme.min.css}"/>
+	<script type="text/javascript" charset="utf8" th:src="@{/static/bootstrap-3.3.7/js/bootstrap.js}"></script>  
+	
+	<!-- Plugin jquery-loading -->
+	<link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/jquery-loading/css/jquery.loading.min.css}"/>
+	<script type="text/javascript" charset="utf8" th:src="@{/static/jquery-loading/js/jquery.loading.min.js}"></script>    
+  </head>
+  <body class="auth"> 
+    <div class="menus-container">
+		<nav id="navigation" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<!-- Selection de Projeto -->
+				<ul class="nav navbar-nav expandable-container">
+					<li class="dropdown" layout:fragment="log-img" />
+					<li class="dropdown">
+						<a class="dropdown-toggle" aria-expanded="false" th:href="@{/}">
+							<strong th:utext="${title}"/>
+							<small th:utext="${subtitle}"/>  
+						</a>
+		            </li> 
+				</ul>
+				<!-- Fim Selection de Projeto -->
+		  </div>
+		</nav> 
+    </div> 
+
+    <div id="content-login" >
+    	<div class="auth-container">
+    		<div class="well form-auth no-padding">
+      			<th:block layout:fragment="content" />
+      		</div>	
+      	</div>
+    </div>
+    <footer id="site-foot" class="site-foot clearfix" layout:fragment="footer"></footer>
+	<!-- Plugin smartadmin -->
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/smartadmin/css/smartadmin.min.css}"/>
+    <script type="text/javascript" charset="utf8" th:src="@{/static/smartadmin/js/smartadmin.js}"></script>  
+    <script type="text/javascript" charset="utf8" th:src="@{/static/smartadmin/js/smartadmin.notification.min.js}"></script>  
+
+	<!-- JQUERY VALIDATE -->
+	<script type="text/javascript" charset="utf8" th:src="@{/static/jquery-validation-1.16.0/js/jquery.validate.min.js}"></script>  
+	<script type="text/javascript" charset="utf8" th:src="@{/static/jquery-validation-1.16.0/js/additional-methods.min.js}"></script>  
+
+	<!-- Plugin commons-layout -->
+	<link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/commons-layout/css/commons-layout.css}"/>
+	
+    <!--[if IE 8]>
+	<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+	<![endif]-->
+	
+  </body>
+</html>
