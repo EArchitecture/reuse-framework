@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * O Controller deve herdar esta classe caso ele apenas implemente operações de pesquisa, e não altere os dados no banco. Nos casos onde o formulário de
- * pesquisa possuir os mesmos campos e validações que a entidade mapeada, utilize o {@link AbstractSimpleListController}
+ * pesquisa possuir os mesmos campos e validações que a entidade mapeada, utilize o {@link BasicController}
  * 
  * @author <a href="mailto:barcelos.cbc@gmail.com">Cleber Barcelos</a>
  * 
