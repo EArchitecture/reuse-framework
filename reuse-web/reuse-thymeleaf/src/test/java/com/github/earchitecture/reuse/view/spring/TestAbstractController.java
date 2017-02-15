@@ -3,6 +3,7 @@ package com.github.earchitecture.reuse.view.spring;
 import com.github.earchitecture.reuse.view.spring.impl.config.TestWebAppContext;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestWebAppContext.class })
 @WebAppConfiguration
+@Ignore
 public class TestAbstractController {
   @Autowired
   private WebApplicationContext context;
