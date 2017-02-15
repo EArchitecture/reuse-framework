@@ -1,16 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
-sudo: false # faster builds
-
 script: 
-  - apt-get update && apt-get clean
-  - apt-get install gnupg2 -y
-  - export GNUPGHOME=./.gnupg
-  - gpg2 --list-keys
-  - mvn package
-
+  - mvn clean install -q
 after_success:
+  - mvn clean cobertura:cobertura coveralls:report deploy -s ./settings.xml
   - bash <(curl -s https://codecov.io/bash)
-  - mvn clean cobertura:cobertura coveralls:report -s settings.xml
-  - mvn deploy -s settings.xml
