@@ -1,6 +1,11 @@
 language: java
 jdk:
   - oraclejdk8
+before_success:
+  - sudo apt-get update && apt-get clean
+  - sudo apt-get install gnupg2 -y
+  - sudo export GNUPGHOME=./.gnupg
+  - sudo gpg2 --list-keys
 script: 
   - mvn clean install -q
 after_success:
