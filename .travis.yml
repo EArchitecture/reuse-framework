@@ -12,5 +12,5 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - mvn clean cobertura:cobertura coveralls:report
+  - mvn clean cobertura:cobertura coveralls:report -s settings.xml
   - mvn deploy -s settings.xml
