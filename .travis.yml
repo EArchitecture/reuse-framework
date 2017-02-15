@@ -5,6 +5,8 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install gnupg2 -y
   - sudo gpg2 --list-keys
+install:  
+  - mvn -s install -DskipTests=true -Dmaven.javadoc.skip=true -B -V ./settings.xml
 script: 
   - mvn clean install -q
 after_success:
