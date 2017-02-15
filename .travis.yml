@@ -9,7 +9,7 @@ before_install:
 install:  
   - mvn -s  ./settings.xml package -DskipTests=true -Dmaven.javadoc.skip=true -B -V 
 script: 
-  - mvn clean install -s ./settings.xml
+  - mvn clean deploy -s ./settings.xml
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report deploy -s ./settings.xml
+  - mvn clean cobertura:cobertura coveralls:report -s ./settings.xml
   - bash <(curl -s https://codecov.io/bash)
