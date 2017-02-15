@@ -106,8 +106,9 @@ public abstract class BasicController<E, I> {
    * Trata mensagens de erro genericas
    * 
    * @param bindingResult
-   * @param modelRedirect
+   *          bind result.
    * @param model
+   *          atributos de request
    */
   protected void processErroMens(BindingResult bindingResult, Model model) {
     for (ObjectError error : bindingResult.getGlobalErrors()) {
