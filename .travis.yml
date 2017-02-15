@@ -5,6 +5,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install gnupg2 -y
   - sudo gpg2 --list-keys
+  - sudo chmod -R 777 $GNUPGHOME
 install:  
   - mvn -s  ./settings.xml package -DskipTests=true -Dmaven.javadoc.skip=true -B -V 
 script: 
