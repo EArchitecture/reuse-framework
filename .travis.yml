@@ -8,3 +8,4 @@ script: "mvn package"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - mvn clean cobertura:cobertura coveralls:report
+  - mvn deploy -s settings.xml
