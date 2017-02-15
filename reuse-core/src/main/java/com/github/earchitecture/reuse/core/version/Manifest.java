@@ -37,6 +37,8 @@ public final class Manifest {
         prop.load(instance.getAppContext().getResource(name).getInputStream());
       } catch (IOException e) {
         LOGGER.error("Erro ao carregar /META-INF/MANIFEST.MF");
+      } catch (NullPointerException e) {
+        LOGGER.error("Erro ao carregar /META-INF/MANIFEST.MF");
       }
     }
     return instance;
