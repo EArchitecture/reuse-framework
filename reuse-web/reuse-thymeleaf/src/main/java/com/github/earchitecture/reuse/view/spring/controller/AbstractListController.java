@@ -1,6 +1,8 @@
 package com.github.earchitecture.reuse.view.spring.controller;
 
 import com.github.earchitecture.reuse.service.CrudService;
+import com.github.earchitecture.reuse.sort.MultiOrderedSearch;
+import com.github.earchitecture.reuse.sort.OrderedSearch;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -153,24 +155,24 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
    * controller implementa {@link OrderedSearch} ou {@link MultiOrderedSearch}. Caso não implemente, verifica se a entidade de pesquisa implementa uma dessas
    * interfaces, caso contrário, executa a pesquisa sem ordenação
    * 
-   * @param searchDTO
+   * @param search
    *          Entidade contendo os parametros do formulário de pesquisa
    * @param model
    *          Atributos da requisição
    */
   protected void doListPost(E search, Model model) {
     try {
-      // if (this instanceof OrderedSearch) {
-      // doOrderedSearch((OrderedSearch) this, searchDTO, model);
-      // } else if (this instanceof MultiOrderedSearch) {
-      // model.addAttribute(AttributeList.ELEMENTOS, get(search, ((MultiOrderedSearch) this).getDirections()));
-      // } else if (search instanceof OrderedSearch) {
-      // doOrderedSearch((OrderedSearch) searchDTO, search, model);
-      // } else if (search instanceof MultiOrderedSearch) {
-      // model.addAttribute(AttributeList.ELEMENTOS, get(search, ((MultiOrderedSearch) search).getDirections()));
-      // } else {
-      model.addAttribute(AttributeList.ELEMENTOS, getBySearchObject(search, null, null));
-      // }
+      if (this instanceof OrderedSearch) {
+        // doOrderedSearch((OrderedSearch) this, search, model);
+      } else if (this instanceof MultiOrderedSearch) {
+        // model.addAttribute(AttributeList.ELEMENTOS, get(search, ((MultiOrderedSearch) this).getDirections()));
+      } else if (search instanceof OrderedSearch) {
+        // doOrderedSearch((OrderedSearch) search, search, model);
+      } else if (search instanceof MultiOrderedSearch) {
+        // model.addAttribute(AttributeList.ELEMENTOS, get(search, ((MultiOrderedSearch) search).getDirections()));
+      } else {
+        model.addAttribute(AttributeList.ELEMENTOS, getBySearchObject(search, null, null));
+      }
     } catch (Exception exp) {
       throw new RuntimeException(exp);
     }
