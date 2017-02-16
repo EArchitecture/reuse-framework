@@ -2,11 +2,11 @@ package com.github.earchitecture.reuse.service;
 
 import com.github.earchitecture.reuse.exception.ValidationServiceException;
 
-import java.awt.print.Pageable;
 import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 

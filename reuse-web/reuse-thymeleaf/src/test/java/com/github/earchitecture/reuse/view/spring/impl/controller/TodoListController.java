@@ -5,11 +5,11 @@ import com.github.earchitecture.reuse.model.impl.entity.Todo;
 import com.github.earchitecture.reuse.service.CrudService;
 import com.github.earchitecture.reuse.view.spring.controller.AbstractListController;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
