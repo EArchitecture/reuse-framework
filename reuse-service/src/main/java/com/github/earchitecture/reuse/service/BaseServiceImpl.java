@@ -1,6 +1,6 @@
 package com.github.earchitecture.reuse.service;
 
-import com.github.earchitecture.reuse.model.repository.CrudRepository;
+import com.github.earchitecture.reuse.model.repository.JpaCrudRepository;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -23,7 +23,7 @@ public abstract class BaseServiceImpl<E, I extends Serializable> implements Base
   private final Class<E> entityClass;
   private final Class<I> idClass;
 
-  protected abstract CrudRepository<E, I> getRepository();
+  protected abstract JpaCrudRepository<E, I> getRepository();
 
   /**
    * Inicializa a instanciação do objeto e carrega informações de manipulação dde objetos base.

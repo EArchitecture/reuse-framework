@@ -19,38 +19,38 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.util.Assert;
 
 /**
- * {@link CrudRepositoryImpl} Implmentação generica de repositorio.
+ * {@link JpaCrudRepositoryImpl} Implmentação generica de repositorio.
  *
  * @param <T>
  *          Tipo do Objeto
  * @param <P>
  *          Tipo da PK (Primary Key)
  */
-public class CrudRepositoryImpl<T, P extends Serializable> extends SimpleJpaRepository<T, P> implements CrudRepository<T, P> {
+public class JpaCrudRepositoryImpl<T, P extends Serializable> extends SimpleJpaRepository<T, P> implements JpaCrudRepository<T, P> {
   private EntityManager em;
 
   /**
-   * Creates a new {@link CrudRepositoryImpl} to manage objects of the given {@link JpaEntityInformation}.
+   * Creates a new {@link JpaCrudRepositoryImpl} to manage objects of the given {@link JpaEntityInformation}.
    * 
    * @param entityInformation
    *          must not be {@literal null}.
    * @param entityManager
    *          must not be {@literal null}.
    */
-  public CrudRepositoryImpl(JpaEntityInformation<T, P> entityInformation, EntityManager entityManager) {
+  public JpaCrudRepositoryImpl(JpaEntityInformation<T, P> entityInformation, EntityManager entityManager) {
     super(entityInformation, entityManager);
     this.em = entityManager;
   }
 
   /**
-   * Creates a new {@link CrudRepositoryImpl} to manage objects of the given DomainClass.
+   * Creates a new {@link JpaCrudRepositoryImpl} to manage objects of the given DomainClass.
    * 
    * @param domainClass
    *          must not be {@literal null}.
    * @param entityManager
    *          must not be {@literal null}.
    */
-  public CrudRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
+  public JpaCrudRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
     super(domainClass, entityManager);
     this.em = entityManager;
   }

@@ -24,12 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * 
  * @author <a href="mailto:barcelos.cbc@gmail.com">Cleber Barcelos</a>
  * @version 0.1.0
- * @param <E>
- *          Tipo da Entidade
- * @param <I>Tipo
- *          da primareKey
  */
-public abstract class BasicController<E, I> {
+public abstract class BasicController {
   @Autowired
   @Qualifier("messageSource")
   private MessageSource messageSource;
