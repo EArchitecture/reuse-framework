@@ -29,8 +29,6 @@ import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -40,7 +38,6 @@ import org.springframework.data.jpa.domain.Specification;
  * @author <a href="cleber.ccosta@axxiom.com.br">Cleber Barcelos Costa</a>
  */
 public class Specs {
-  private final Log logger = LogFactory.getLog(getClass());
   protected static Specs specs = new Specs();
 
   public Specs() {
@@ -149,9 +146,9 @@ public class Specs {
             }
           }
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException exception) {
-          logger.warn("Erro ao montar clausula para: " + pd.getName(), exception);
+          // logger.warn("Erro ao montar clausula para: " + pd.getName(), exception);
         } catch (NoSuchFieldException | SecurityException exception) {
-          logger.warn("Erro ao montar clausula para: " + pd.getName(), exception);
+          // logger.warn("Erro ao montar clausula para: " + pd.getName(), exception);
         }
       }
       return predicates;
