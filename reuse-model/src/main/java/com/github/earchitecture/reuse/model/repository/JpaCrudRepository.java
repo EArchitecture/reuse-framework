@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
- * {@link CrudRepository} Repositorio customizado para operações de refresh e evict.
+ * {@link JpaCrudRepository} Repositorio customizado para operações de refresh e evict.
  *
  * @param <T>
  *          Class Object
@@ -16,7 +16,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  *          Tipo de classe de PK (Primary Key)
  */
 @NoRepositoryBean
-public interface CrudRepository<T, I extends Serializable> extends JpaRepository<T, I>, JpaSpecificationExecutor<T> {
+public interface JpaCrudRepository<T, I extends Serializable> extends JpaRepository<T, I>, JpaSpecificationExecutor<T> {
 
   /**
    * Aatualiza o estado da instância a partir do banco de dados.

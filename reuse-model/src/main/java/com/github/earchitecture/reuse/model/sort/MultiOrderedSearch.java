@@ -1,4 +1,4 @@
-package com.github.earchitecture.reuse.sort;
+package com.github.earchitecture.reuse.model.sort;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.github.earchitecture.reuse.view.spring.controller;
 
+import com.github.earchitecture.reuse.model.sort.MultiOrderedSearch;
+import com.github.earchitecture.reuse.model.sort.OrderedSearch;
 import com.github.earchitecture.reuse.service.CrudService;
-import com.github.earchitecture.reuse.sort.MultiOrderedSearch;
-import com.github.earchitecture.reuse.sort.OrderedSearch;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  *          Tipo do objeto da PK ( Primary Key )
  * @version 0.1.0
  */
-public abstract class AbstractListController<E, I extends Serializable> extends BasicController<E, I> implements ListController<E, I> {
+public abstract class AbstractListController<E, I extends Serializable> extends BasicController implements ListController<E, I> {
   private static final long serialVersionUID = 1L;
   private boolean autoSearch = false;
   private boolean pagination = false;

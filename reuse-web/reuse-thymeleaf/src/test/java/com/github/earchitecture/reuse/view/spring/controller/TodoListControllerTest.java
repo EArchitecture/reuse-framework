@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
  * @author <a href="mailto:barcelos.cbc@gmail.com">Cleber Barcelos</a>
  * @version 0.1.0
  */
-public class AbstractListControllerTest extends TestAbstractController {
+public class TodoListControllerTest extends TestAbstractController {
 
   @Autowired
   private TodoListController controller;
