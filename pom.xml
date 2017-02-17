@@ -321,6 +321,13 @@
 	<profiles>
 		<profile>
 			<id>finalrelease</id>
+			<modules>
+				<module>reuse-core</module>
+				<module>reuse-model</module>
+				<module>reuse-service</module>
+				<module>reuse-view</module>
+				<module>reuse-web</module>
+			</modules>
 			<build>
 				<pluginManagement>
 					<plugins>
