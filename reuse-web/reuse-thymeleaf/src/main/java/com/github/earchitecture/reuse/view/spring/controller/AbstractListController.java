@@ -54,6 +54,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
    */
   @Override
   public String listGet(Model model) throws Exception {
+
     BindingResult result = new BeanPropertyBindingResult(this.getSearchObject(), this.getSearchClass().getName());
     if (isAutoSearch()) {
       model.addAttribute(AttributeList.IS_SEARCH, false);
@@ -120,7 +121,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
    * @param model
    *          Attributos de requisição
    * @throws Exception
-   *          Levanta exceções não tratadas.
+   *           Levanta exceções não tratadas.
    */
   protected void listModelFiller(Model model) throws Exception {
   }
