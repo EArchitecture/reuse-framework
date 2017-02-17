@@ -321,13 +321,12 @@
 	<profiles>
 		<profile>
 			<id>finalrelease</id>
-			<modules>
-				<module>reuse-core</module>
-				<module>reuse-model</module>
-				<module>reuse-service</module>
-				<module>reuse-view</module>
-				<module>reuse-web</module>
-			</modules>
+			<activation>
+				<property>
+					<name>finalrelease</name>
+					<value>true</value>
+				</property>
+			</activation>
 			<build>
 				<pluginManagement>
 					<plugins>
