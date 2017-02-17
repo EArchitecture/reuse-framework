@@ -15,7 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.data.jpa.repository.support.QueryDslJpaRepository;
 import org.springframework.util.Assert;
 
 /**
@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * @param <P>
  *          Tipo da PK (Primary Key)
  */
-public class JpaCrudRepositoryImpl<T, P extends Serializable> extends SimpleJpaRepository<T, P> implements JpaCrudRepository<T, P> {
+public class JpaCrudRepositoryImpl<T, P extends Serializable> extends QueryDslJpaRepository<T, P> implements JpaCrudRepository<T, P> {
   private EntityManager em;
 
   /**
@@ -39,19 +39,6 @@ public class JpaCrudRepositoryImpl<T, P extends Serializable> extends SimpleJpaR
    */
   public JpaCrudRepositoryImpl(JpaEntityInformation<T, P> entityInformation, EntityManager entityManager) {
     super(entityInformation, entityManager);
-    this.em = entityManager;
-  }
-
-  /**
-   * Creates a new {@link JpaCrudRepositoryImpl} to manage objects of the given DomainClass.
-   * 
-   * @param domainClass
-   *          must not be {@literal null}.
-   * @param entityManager
-   *          must not be {@literal null}.
-   */
-  public JpaCrudRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
-    super(domainClass, entityManager);
     this.em = entityManager;
   }
 
