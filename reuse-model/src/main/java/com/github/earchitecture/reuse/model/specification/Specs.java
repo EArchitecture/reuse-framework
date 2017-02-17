@@ -48,9 +48,15 @@ public class Specs {
    * 
    * @param clazz
    *          clazz
+   * 
    * @param entity
    *          entity
+   * @param <T>
+   *          Tipo da classe
+   * @param <B>
+   *          entidade
    * @return ret {@link Specification}
+   * 
    */
   public static <T, B> Specification<T> byExample(final Class<T> clazz, final B entity) {
     return specs.new ByExampleSpecification<T, B>(entity);
@@ -98,6 +104,8 @@ public class Specs {
      *          cb
      * @param entity
      *          entity
+     * @param expression
+     *          expression
      * @return List de predicate
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

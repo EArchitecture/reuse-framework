@@ -119,6 +119,8 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
    * 
    * @param model
    *          Attributos de requisição
+   * @throws Exception
+   *          Levanta exceções não tratadas.
    */
   protected void listModelFiller(Model model) throws Exception {
   }
