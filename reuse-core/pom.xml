@@ -40,7 +40,7 @@
 				<executions>
 					<execution>
 						<configuration>
-							<homedir>../${gpg.homedir}</homedir>
+							<homedir>${gpg.homedir}</homedir>
 						</configuration>
 					</execution>
 				</executions>
