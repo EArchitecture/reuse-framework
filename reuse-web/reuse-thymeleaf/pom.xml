@@ -4,32 +4,55 @@
 	<parent>
 		<artifactId>reuse-web</artifactId>
 		<groupId>com.github.earchitecture.reuse</groupId>
-		<version>0.1.0.0</version>
+		<version>0.1.1.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.earchitecture.reuse.web</groupId>
 	<artifactId>reuse-thymeleaf</artifactId>
 	<packaging>war</packaging>
-	
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-						<configuration>
-							<homedir>../../${gpg.homedir}</homedir>
-						</configuration>
-					</execution>
-				</executions>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<configLocation>${project.basedir}/../../checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>finalrelease</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<homedir>../${gpg.homedir}</homedir>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
