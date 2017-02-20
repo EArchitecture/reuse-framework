@@ -3,8 +3,8 @@ package com.github.earchitecture.reuse.model.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
@@ -16,15 +16,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  *          Tipo de classe de PK (Primary Key)
  */
 @NoRepositoryBean
-public interface JpaCrudRepository<T, I extends Serializable> extends JpaSpecificationExecutor<T>, QueryDslPredicateExecutor<T> {
-
-  /**
-   * Aatualiza o estado da instância a partir do banco de dados.
-   * 
-   * @param entity
-   *          Objeto a ser realizado a refresh
-   */
-  void refresh(T entity);
+public interface JpaCrudRepository<T, I extends Serializable> extends JpaRepository<T, I>, JpaSpecificationExecutor<T> {
 
   /**
    * Remover um elemento do cache de segundo nível.

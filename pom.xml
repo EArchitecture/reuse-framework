@@ -12,6 +12,8 @@
 		<module>reuse-service</module>
 		<module>reuse-view</module>
 		<module>reuse-web</module>
+		
+		<module>reuse-datatable</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -25,6 +27,7 @@
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<spring.data.version>1.11.0.RELEASE</spring.data.version>
 		<reuse.version>${project.version}</reuse.version>
+		<thymeleaf.version>3.0.1.RELEASE</thymeleaf.version>
 	</properties>
 
 	<dependencies>
@@ -159,6 +162,23 @@
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
 				<version>1.1.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.dandelion</groupId>
+				<artifactId>datatables-thymeleaf</artifactId>
+				<version>1.1.0</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf</artifactId>
+				<version>${thymeleaf.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring4</artifactId>
+				<version>${thymeleaf.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

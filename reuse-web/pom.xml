@@ -8,7 +8,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.earchitecture.reuse</groupId>
+	<groupId>com.github.earchitecture.reuse.web</groupId>
 	<artifactId>reuse-web</artifactId>
 	<packaging>pom</packaging>
 
@@ -109,8 +109,8 @@
 		</plugins>
 	</build>
 
+	<version>0.1.1.0</version>
 	<modules>
 		<module>reuse-thymeleaf</module>
 	</modules>
-	<version>0.1.1.0</version>
 </project>

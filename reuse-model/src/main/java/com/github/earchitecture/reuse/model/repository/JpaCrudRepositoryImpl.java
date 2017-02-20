@@ -15,7 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-import org.springframework.data.jpa.repository.support.QueryDslJpaRepository;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.util.Assert;
 
 /**
@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * @param <P>
  *          Tipo da PK (Primary Key)
  */
-public class JpaCrudRepositoryImpl<T, P extends Serializable> extends QueryDslJpaRepository<T, P> implements JpaCrudRepository<T, P> {
+public class JpaCrudRepositoryImpl<T, P extends Serializable> extends SimpleJpaRepository<T, P> implements JpaCrudRepository<T, P> {
   private EntityManager em;
 
   /**
@@ -42,12 +42,16 @@ public class JpaCrudRepositoryImpl<T, P extends Serializable> extends QueryDslJp
     this.em = entityManager;
   }
 
+  public JpaCrudRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
+    super(domainClass, entityManager);
+    this.em = entityManager;
+  }
+
   /*
    * (non-Javadoc)
    * 
    * @see com.github.earchitecture.reuse.model.repository.CrudRepository#refresh(java.lang.Object)
    */
-  @Override
   public void refresh(T entity) {
     em.refresh(entity);
   }
@@ -57,7 +61,6 @@ public class JpaCrudRepositoryImpl<T, P extends Serializable> extends QueryDslJp
    * 
    * @see com.github.earchitecture.reuse.model.repository.CrudRepository#evict(java.lang.Object)
    */
-  @Override
   public void evict(T entity) {
     Session session = em.unwrap(Session.class);
     session.evict(entity);
@@ -116,7 +119,6 @@ public class JpaCrudRepositoryImpl<T, P extends Serializable> extends QueryDslJp
    * 
    * @see com.github.earchitecture.reuse.model.repository.CrudRepository#sessionClear()
    */
-  @Override
   public void sessionClear() {
     Session session = em.unwrap(Session.class);
     session.clear();
