@@ -7,6 +7,7 @@
 		<version>0.1.1.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.earchitecture.reuse.datatable</groupId>
 	<artifactId>reuse-datatable-thymeleaf</artifactId>
 
 	<dependencies>
