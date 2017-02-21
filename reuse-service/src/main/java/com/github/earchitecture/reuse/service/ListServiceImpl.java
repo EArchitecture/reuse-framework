@@ -1,7 +1,5 @@
 package com.github.earchitecture.reuse.service;
 
-import com.github.earchitecture.reuse.exception.ValidationServiceException;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.github.earchitecture.reuse.exception.ValidationServiceException;
+import com.github.earchitecture.reuse.model.specification.Specs;
 
 /**
  * Lista de serviço de operações de listagem, filtro e paginação.
@@ -23,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public abstract class ListServiceImpl<E, I extends Serializable> extends BaseServiceImpl<E, I> implements ListService<E, I> {
 
+  protected Class<E> entityClass;
+
   /*
    * (non-Javadoc)
    * 
@@ -31,8 +34,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public E get(I id) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().findOne(id);
   }
 
   /*
@@ -43,8 +45,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public List<E> find(E entity) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().findAll(Specs.byExample(entityClass, entity));
   }
 
   /*
@@ -55,8 +56,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public E findOne(E entity) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().findOne(Specs.byExample(entityClass, entity));
   }
 
   /*
@@ -67,7 +67,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public List<E> findSort(E entity, Sort sort) throws ValidationServiceException {
-    // TODO Auto-generated method stub
+    // TODO IMPLEMENTAR findSort
     return null;
   }
 
@@ -79,7 +79,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public Page<E> findPage(E entity, Pageable page) throws ValidationServiceException {
-    // TODO Auto-generated method stub
+    // TODO IMPLEMENTAR findPage
     return null;
   }
 
@@ -91,8 +91,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public List<E> findAll() throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().findAll();
   }
 
   /*
@@ -103,8 +102,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public List<E> findAll(Sort sort) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().findAll(sort);
   }
 
   /*
@@ -115,8 +113,7 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   @Override
   @Transactional(readOnly = true)
   public Page<E> findAll(Pageable page) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().findAll(page);
   }
 
 }

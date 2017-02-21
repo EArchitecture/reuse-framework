@@ -1,11 +1,17 @@
 package com.github.earchitecture.reuse.service;
 
-import com.github.earchitecture.reuse.exception.ValidationServiceException;
-
 import java.io.Serializable;
 import java.util.List;
 
+import javax.xml.bind.ValidationException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.github.earchitecture.reuse.exception.ValidationServiceException;
+import com.github.earchitecture.reuse.model.entity.Identifiable;
+import com.github.earchitecture.reuse.service.log.LogService;
 
 /**
  * Define operações de alteração, exclusão e persistencia para entidades de crud.
@@ -17,7 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <I>
  *          Tipo do id a ser referenciado.
  */
-public abstract class CrudServiceImpl<E, I extends Serializable> extends ListServiceImpl<E, I> implements CrudService<E, I> {
+public abstract class CrudServiceImpl<E extends Identifiable<I>, I extends Serializable> extends ListServiceImpl<E, I> implements CrudService<E, I> {
+
+  private final Log logger = LogFactory.getLog(getClass());
 
   /*
    * (non-Javadoc)
@@ -27,8 +35,20 @@ public abstract class CrudServiceImpl<E, I extends Serializable> extends ListSer
   @Override
   @Transactional
   public E saveTransactionReadOnly(E entity) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    // se o id está preenchido é update, chama o log antes da atualização
+    // para os casos onde precisa-se saber o que foi alterado
+    boolean update = false;
+    if (entity.getId() != null) {
+      getLogService().logUpdate(entity);
+      update = true;
+    }
+    E savedEntity = getRepository().save(entity);
+    getRepository().flush();
+    getRepository().sessionClear();
+    if (!update) {
+      getLogService().logInsert(savedEntity);
+    }
+    return savedEntity;
   }
 
   /*
@@ -39,8 +59,7 @@ public abstract class CrudServiceImpl<E, I extends Serializable> extends ListSer
   @Override
   @Transactional
   public List<E> save(Iterable<E> entities) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    return getRepository().save(entities);
   }
 
   /*
@@ -51,8 +70,20 @@ public abstract class CrudServiceImpl<E, I extends Serializable> extends ListSer
   @Override
   @Transactional
   public E save(E entity) throws ValidationServiceException {
-    // TODO Auto-generated method stub
-    return null;
+    // se o id está preenchido é update, chama o log antes da atualização
+    // para os casos onde precisa-se saber o que foi alterado
+    boolean update = false;
+    if (entity.getId() != null) {
+      getLogService().logUpdate(entity);
+      update = true;
+    }
+    E savedEntity = getRepository().save(entity);
+    getRepository().flush();
+    getRepository().sessionClear();
+    if (!update) {
+      getLogService().logInsert(savedEntity);
+    }
+    return savedEntity;
   }
 
   /*
@@ -63,7 +94,10 @@ public abstract class CrudServiceImpl<E, I extends Serializable> extends ListSer
   @Override
   @Transactional
   public void delete(I id) throws ValidationServiceException {
-    // TODO Auto-generated method stub
+
+    E entity = get(id);
+    getLogService().logDelete(entity);
+    getRepository().delete(id);
 
   }
 
@@ -75,7 +109,54 @@ public abstract class CrudServiceImpl<E, I extends Serializable> extends ListSer
   @Override
   @Transactional
   public void deleteByExample(E entity) throws ValidationServiceException {
-    // TODO Auto-generated method stub
+    List<E> entities = find(entity);
+    getLogService().logBatchDelete(entities);
+    getRepository().deleteInBatch(entities);
+  }
 
+  /**
+   * Recupera login conectado
+   * 
+   * @return
+   * @throws ValidationException
+   */
+  public String getUsername() throws ValidationServiceException {
+    // TODO IMPLEMENTAR RECUPERAR USUÁRIO
+    return "";
+  }
+
+  /**
+   * Função para registro de log.
+   * 
+   * @return Retorna uma instancia do log.
+   * @throws Exception
+   *           Caso ocorra algum erro , será lançando exception
+   */
+  protected LogService<E> getLogService() throws ValidationServiceException {
+    return new SimpleLogService();
+  }
+
+  private class SimpleLogService implements LogService<E> {
+    @Override
+    public void logInsert(E entity) throws ValidationServiceException {
+      logger.debug("Usuário: " + getUsername() + " - Inserindo: " + entity);
+    }
+
+    @Override
+    public void logUpdate(E entity) throws ValidationServiceException {
+      logger.debug("Usuário: " + getUsername() + " - Atualizando: " + entity);
+    }
+
+    @Override
+    public void logDelete(E entity) throws ValidationServiceException {
+      logger.debug("Usuário: " + getUsername() + " - Excluindo: " + entity);
+    }
+
+    @Override
+    public void logBatchDelete(List<E> entities) throws ValidationServiceException {
+      for (E e : entities) {
+        logDelete(e);
+      }
+    }
   }
 }
