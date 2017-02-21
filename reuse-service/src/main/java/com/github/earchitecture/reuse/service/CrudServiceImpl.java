@@ -117,8 +117,8 @@ public abstract class CrudServiceImpl<E extends Identifiable<I>, I extends Seria
   /**
    * Recupera login conectado
    * 
-   * @return
-   * @throws ValidationException
+   * @return Usuario autenticado
+   * @throws ValidationServiceException
    */
   public String getUsername() throws ValidationServiceException {
     // TODO IMPLEMENTAR RECUPERAR USUÁRIO
@@ -129,7 +129,7 @@ public abstract class CrudServiceImpl<E extends Identifiable<I>, I extends Seria
    * Função para registro de log.
    * 
    * @return Retorna uma instancia do log.
-   * @throws Exception
+   * @throws ValidationServiceException
    *           Caso ocorra algum erro , será lançando exception
    */
   protected LogService<E> getLogService() throws ValidationServiceException {
