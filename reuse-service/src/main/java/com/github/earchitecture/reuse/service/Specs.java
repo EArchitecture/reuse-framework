@@ -28,6 +28,7 @@ import com.github.earchitecture.reuse.model.annotation.GreaterThan;
 import com.github.earchitecture.reuse.model.annotation.GreaterThanOrEqualTo;
 import com.github.earchitecture.reuse.model.annotation.Ignore;
 import com.github.earchitecture.reuse.model.annotation.LessThan;
+
 import com.github.earchitecture.reuse.model.annotation.LessThanOrEqualTo;
 import com.github.earchitecture.reuse.model.annotation.StartsWith;
 import com.github.earchitecture.reuse.model.annotation.UseForeignKeySearch;
@@ -53,6 +54,8 @@ public class Specs {
    *          clazz
    * @param entity
    *          entity
+   * @param <T> tipo da entidade
+   * @param <B> tipo da primary key
    * @return ret {@link Specification}
    */
   public static <T, B> Specification<T> byExample(final Class<T> clazz, final B entity) {
@@ -100,7 +103,7 @@ public class Specs {
      *          cb
      * @param entity
      *          entity
-     * @param path
+     * @param expression expression
      * @return List de predicate
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
