@@ -17,6 +17,8 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * O Controller deve herdar esta classe caso ele apenas implemente operações de pesquisa, e não altere os dados no banco. Nos casos onde o formulário de
@@ -71,7 +73,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
     }
     model.addAttribute(AttributeList.IS_SEARCH, false);
     setTypeTela(model, TypeTela.LIST);
-    return this.getViewPage();
+    return this.getListView();
   }
 
   /*
@@ -89,7 +91,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
     if (result.hasErrors()) {
       model.addAttribute(BindingResult.MODEL_KEY_PREFIX + "object", result);
       processErroMens(result, model);
-      return this.getViewPage();
+      return this.getListView();
     } else {
       listModelFiller(model);
       try {
@@ -102,7 +104,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
         result.addError(new ObjectError("", "Erro ao realizar pesquisa."));
       }
     }
-    return this.getViewPage();
+    return this.getListView();
   }
 
   /*
@@ -197,6 +199,12 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
     return response;
   }
 
+  @ResponseBody
+  public final E get(@PathVariable I id) throws Exception {
+    E ret = getService().get(id);
+    return ret;
+  }
+
   /**
    * Retorna a situação da auto pesquisa.
    * 
@@ -239,7 +247,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
    * 
    * @return listagem page
    */
-  protected String getViewPage() {
+  protected String getListView() {
     return super.getBasePath() + AttributeList.PAGE_LIST;
   }
 

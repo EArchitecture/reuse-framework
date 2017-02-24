@@ -1,9 +1,10 @@
 package com.github.earchitecture.reuse.view.spring.controller;
 
-import com.github.earchitecture.reuse.core.version.Manifest;
-
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,6 +20,8 @@ import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.github.earchitecture.reuse.core.version.Manifest;
 
 /**
  * 
@@ -97,6 +100,8 @@ public abstract class BasicController {
     }
     return ret;
   }
+
+
 
   /**
    * Trata mensagens de erro genericas

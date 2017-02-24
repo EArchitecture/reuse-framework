@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,6 @@ public interface ListController<E, I extends Serializable> extends Serializable 
     interface Path {
       String INDEX = "index";
     }
-
   }
 
   /**
@@ -68,4 +68,16 @@ public interface ListController<E, I extends Serializable> extends Serializable 
    */
   @RequestMapping(value = { "/index", "/", "" }, method = RequestMethod.POST)
   String listPost(@Valid E search, BindingResult result, Model model) throws Exception;
+
+  /**
+   * Operação REST de get por id.
+   * 
+   * @param id
+   *          id da entidade
+   * @return Retorna o json com a entidade selecionada pelo id
+   * @throws Exception
+   *           Caso o id não seja encontrado
+   */
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  E get(@PathVariable I id) throws Exception;
 }
