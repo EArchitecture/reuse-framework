@@ -1,5 +1,7 @@
 package com.github.earchitecture.reuse.view.spring.controller;
 
+import com.github.earchitecture.reuse.view.spring.controller.AbstractListController.DataJson;
+
 import java.io.Serializable;
 
 import javax.validation.Valid;
@@ -68,6 +70,9 @@ public interface ListController<E, I extends Serializable> extends Serializable 
    */
   @RequestMapping(value = { "/index", "/", "" }, method = RequestMethod.POST)
   String listPost(@Valid E search, BindingResult result, Model model) throws Exception;
+
+  @RequestMapping(value = { "/index", "/", "" }, method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+  DataJson listPostJson(@Valid E search, BindingResult result, Model model) throws Exception;
 
   /**
    * Operação REST de get por id.

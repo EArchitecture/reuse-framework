@@ -1,6 +1,7 @@
 package com.github.earchitecture.reuse.datatable.thymeleaf;
 
-import com.github.earchitecture.reuse.datatable.thymeleaf.processor.ClassAttributeTagProcessor;
+import com.github.earchitecture.reuse.datatable.thymeleaf.processor.DataTableAttributeModelProcessor;
+import com.github.earchitecture.reuse.datatable.thymeleaf.processor.InstallDataTableModelProcessor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,10 +19,10 @@ import org.thymeleaf.templatemode.TemplateMode;
  */
 public class ReuseDatatableDialect extends AbstractProcessorDialect {
   public static final String DIALECT_NAMESPACE = "http://www.thymeleaf.org/extras/reusedatatable";
-  public static final String DIALECT_PREFIX = "rdt";
+  public static final String DIALECT_PREFIX = "dt";
 
   /**
-   * Configura o com ponente para identificar a tag rdt
+   * Configura o com ponente para identificar a tag dt
    */
   public ReuseDatatableDialect() {
     super(DIALECT_NAMESPACE, DIALECT_PREFIX, 800);
@@ -36,7 +37,8 @@ public class ReuseDatatableDialect extends AbstractProcessorDialect {
   public Set<IProcessor> getProcessors(String dialectPrefix) {
     final Set<IProcessor> processors = new HashSet<IProcessor>();
     processors.add(new StandardXmlNsTagProcessor(TemplateMode.HTML, dialectPrefix));
-    processors.add(new ClassAttributeTagProcessor(dialectPrefix));
+    processors.add(new InstallDataTableModelProcessor(dialectPrefix));
+    processors.add(new DataTableAttributeModelProcessor(dialectPrefix));
     return processors;
   }
 

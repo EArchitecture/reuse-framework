@@ -1,5 +1,8 @@
 package com.github.earchitecture.reuse.service;
 
+import com.github.earchitecture.reuse.exception.ValidationServiceException;
+import com.github.earchitecture.reuse.model.specification.Specs;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,9 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.github.earchitecture.reuse.exception.ValidationServiceException;
-import com.github.earchitecture.reuse.model.specification.Specs;
 
 /**
  * Lista de serviço de operações de listagem, filtro e paginação.
@@ -108,12 +108,22 @@ public abstract class ListServiceImpl<E, I extends Serializable> extends BaseSer
   /*
    * (non-Javadoc)
    * 
-   * @see com.github.earchitecture.reuse.service.ListService#findAll(java.awt.print.Pageable)
+   * @see com.github.earchitecture.reuse.service.ListService#findAllPage(java.awt.print.Pageable)
    */
   @Override
   @Transactional(readOnly = true)
-  public Page<E> findAll(Pageable page) throws ValidationServiceException {
+  public Page<E> findAllPage(Pageable page) throws ValidationServiceException {
     return getRepository().findAll(page);
+  }
+
+  @Override
+  public long count() {
+    return getRepository().count();
+  }
+
+  @Override
+  public long count(E entity) {
+    return getRepository().count(Specs.byExample(entityClass, entity));
   }
 
 }

@@ -110,6 +110,89 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
   /*
    * (non-Javadoc)
    * 
+   * @see com.github.earchitecture.reuse.view.spring.controller.ListController#listPostJson(java.lang.Object, org.springframework.validation.BindingResult,
+   * org.springframework.ui.Model)
+   */
+  @Override
+  public @ResponseBody DataJson listPostJson(@Valid E search, BindingResult result, Model model) throws Exception {
+    return new DataJson();
+  }
+
+  public class DataJson implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Integer draw = 1;
+    private Integer recordsTotal = 2;
+    private Integer recordsFiltered = 2;
+    private List<Cont> data = new ArrayList<Cont>();
+
+    DataJson() {
+      data.add(new Cont(123, 1));
+      data.add(new Cont(456, 2));
+    }
+
+    public Integer getDraw() {
+      return draw;
+    }
+
+    public void setDraw(Integer draw) {
+      this.draw = draw;
+    }
+
+    public Integer getRecordsTotal() {
+      return recordsTotal;
+    }
+
+    public void setRecordsTotal(Integer recordsTotal) {
+      this.recordsTotal = recordsTotal;
+    }
+
+    public Integer getRecordsFiltered() {
+      return recordsFiltered;
+    }
+
+    public void setRecordsFiltered(Integer recordsFiltered) {
+      this.recordsFiltered = recordsFiltered;
+    }
+
+    public List<Cont> getData() {
+      return data;
+    }
+
+    public void setData(List<Cont> data) {
+      this.data = data;
+    }
+  }
+
+  public class Cont {
+    private Integer numeroContrato;
+    private Integer id;
+
+    public Cont(Integer numeroContrato, Integer id) {
+      this.numeroContrato = numeroContrato;
+      this.id = id;
+    }
+
+    public Integer getId() {
+      return id;
+    }
+
+    public void setId(Integer id) {
+      this.id = id;
+    }
+
+    public Integer getNumeroContrato() {
+      return numeroContrato;
+    }
+
+    public void setNumeroContrato(Integer numeroContrato) {
+      this.numeroContrato = numeroContrato;
+    }
+
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see com.github.earchitecture.reuse.view.spring.controller.ListController#listGet(java.lang.String, org.springframework.ui.Model)
    */
   @Override
@@ -199,6 +282,7 @@ public abstract class AbstractListController<E, I extends Serializable> extends 
     return response;
   }
 
+  @Override
   @ResponseBody
   public final E get(@PathVariable I id) throws Exception {
     E ret = getService().get(id);

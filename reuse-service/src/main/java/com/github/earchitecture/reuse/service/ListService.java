@@ -32,6 +32,22 @@ public interface ListService<E, I extends Serializable> extends BaseService<E, I
   E get(I id) throws ValidationServiceException;
 
   /**
+   * Retorna a quantidade de registro no banco de dados.
+   * 
+   * @return Quantidade de registro
+   */
+  long count();
+
+  /**
+   * Retorna a quantidade de registro por filtro by example
+   * 
+   * @param entity
+   *          entidade a ser pesquisada
+   * @return quantidade de registros.
+   */
+  long count(E entity);
+
+  /**
    * Retorna uma lista de objeto, conforme a pesquisa por exemplo.
    * 
    * @param entity
@@ -107,5 +123,5 @@ public interface ListService<E, I extends Serializable> extends BaseService<E, I
    * @throws ValidationServiceException
    *           validações de negocio.
    */
-  Page<E> findAll(Pageable page) throws ValidationServiceException;
+  Page<E> findAllPage(Pageable page) throws ValidationServiceException;
 }
